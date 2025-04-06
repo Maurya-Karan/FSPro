@@ -26,7 +26,7 @@ const App = () => {
     return <LoginOrRegister />
   }
   const links = [
-    { to: "/home", label: "Home", icon: <LucideHome size={20} /> },
+    { to: "/", label: "Home", icon: <LucideHome size={20} /> },
     { to: "/add", label: "Add", icon: <PlusCircle size={20} /> },
     { to: "/requests", label: "Requests", icon: <ClipboardList size={20} /> },
     { to: '/smartrecipe', label: "Smart Recipe", icon: <NotebookText size={20} /> },
@@ -53,7 +53,7 @@ const App = () => {
       <div className="flex-1 h-screen overflow-y-scroll">
         <Routes>
           {/* Public Route */}
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
           {/* Protected Route */}
           <Route

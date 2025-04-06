@@ -54,7 +54,7 @@ const Requests = () => {
       const userMail = localStorage.getItem("email");
       try {
         const { data } = await axios.post(
-          "http://localhost:5000/food/requests",
+          `${import.meta.env.VITE_DEV_URL}/food/requests`,
           { userMail },
           {
             headers: { Authorization: localStorage.getItem("token") },
@@ -72,7 +72,7 @@ const Requests = () => {
   const handleAccept = async (foodItemId) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/food/acceptReq",
+        `${import.meta.env.VITE_DEV_URL}/food/acceptReq`,
         {
           id: foodItemId,
           mail: localStorage.getItem("email"),
@@ -99,7 +99,7 @@ const Requests = () => {
   const handleReject = async (foodItemId) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/food/rejectReq",
+        `${import.meta.env.VITE_DEV_URL}/food/rejectReq`,
         {
           id: foodItemId,
           mail: localStorage.getItem("email"),

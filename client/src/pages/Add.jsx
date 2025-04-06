@@ -44,48 +44,48 @@ const Add = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!localStorage.getItem("token")) {
-        alert("You must be logged in to add food donations.");
-        return;
+      alert("You must be logged in to add food donations.");
+      return;
     }
     if (!formData.title || !formData.foodItem || !formData.quantity || !formData.location || !formData.expiryDate || !formData.file) {
       alert("Please fill in all required fields.");
       return;
-  }
+    }
 
     try {
-        const formDataToSend = new FormData();
-        formDataToSend.append("title", formData.title);
-        formDataToSend.append("foodItem", formData.foodItem);
-        formDataToSend.append("donorMail", formData.donorMail);
-        formDataToSend.append("description", formData.description);
-        formDataToSend.append("quantity", formData.quantity);
-        formDataToSend.append("location", formData.location);
-        formDataToSend.append("expiryDate", formData.expiryDate);
-        formDataToSend.append("file", formData.file);
+      const formDataToSend = new FormData();
+      formDataToSend.append("title", formData.title);
+      formDataToSend.append("foodItem", formData.foodItem);
+      formDataToSend.append("donorMail", formData.donorMail);
+      formDataToSend.append("description", formData.description);
+      formDataToSend.append("quantity", formData.quantity);
+      formDataToSend.append("location", formData.location);
+      formDataToSend.append("expiryDate", formData.expiryDate);
+      formDataToSend.append("file", formData.file);
 
-        const { data } = await axios.post("http://localhost:5000/food/add", formDataToSend, {
-            headers: {
-                Authorization: localStorage.getItem("token"),
-                "Content-Type": "multipart/form-data",
-            },
-        });
+      const { data } = await axios.post(`${import.meta.env.VITE_DEV_URL}/food/add`, formDataToSend, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-        alert("Food donation added successfully!");
-        setFormData({
-            title: "",
-            foodItem: "",
-            donorMail: localStorage.getItem("email"),
-            description: "",
-            quantity: "",
-            location: "",
-            expiryDate: "",
-            file: null,
-        });
+      alert("Food donation added successfully!");
+      setFormData({
+        title: "",
+        foodItem: "",
+        donorMail: localStorage.getItem("email"),
+        description: "",
+        quantity: "",
+        location: "",
+        expiryDate: "",
+        file: null,
+      });
     } catch (error) {
-        console.error("Error submitting form:", error);
-        alert("An error occurred. Please try again.");
+      console.error("Error submitting form:", error);
+      alert("An error occurred. Please try again.");
     }
-};
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-6">

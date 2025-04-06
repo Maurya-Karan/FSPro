@@ -16,7 +16,7 @@ const SmartRec = () => {
     const fetchGeneratedContent = async () => {
         setLoading(true);
         try {
-            const response = await axios.post("http://localhost:5000/auth/generate-content", {
+            const response = await axios.post(`${import.meta.env.VITE_DEV_URL}/auth/generate-content`, {
                 ingredients,
             });
             const { data } = response;

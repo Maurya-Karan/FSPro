@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { LogOut, Bell, ClipboardList, Inbox } from "lucide-react";
 import axios from "axios";
-import SkeletonLoader from "../components/SkeletonLoader"; // Skeleton loader for better UX
+import SkeletonLoader from "../Components/SkeletonLoader"; // Skeleton loader for better UX
 import NotificationCard from "../Components/NotificationCard";
 
 const Profile = () => {
@@ -15,7 +15,7 @@ const Profile = () => {
     try {
       const email = localStorage.getItem("email");
       await axios.post(
-        "http://localhost:5000/auth/logout",
+        `${import.meta.env.VITE_DEV_URL}/auth/logout`,
         { email },
         { withCredentials: true }
       );
@@ -32,7 +32,7 @@ const Profile = () => {
     try {
       const email = localStorage.getItem("email");
       const { data } = await axios.get(
-        `http://localhost:5000/food/donations?email=${email}`,
+        `${import.meta.env.VITE_DEV_URL}/food/donations?email=${email}`,
         {
           headers: { Authorization: localStorage.getItem("token") },
         }
@@ -51,7 +51,7 @@ const Profile = () => {
     try {
       const email = localStorage.getItem("email");
       const { data } = await axios.get(
-        `http://localhost:5000/food/claims?email=${email}`,
+        `${import.meta.env.VITE_DEV_URL}/food/claims?email=${email}`,
         {
           headers: { Authorization: localStorage.getItem("token") },
         }
@@ -71,7 +71,7 @@ const Profile = () => {
       const email = localStorage.getItem("email");
       const token = localStorage.getItem("token");
       const { data } = await axios.post(
-        `http://localhost:5000/auth/notifications`, { email },
+        `${import.meta.env.VITE_DEV_URL}/auth/notifications`, { email },
         {
           headers: {
             Authorization: token,
@@ -100,7 +100,7 @@ const Profile = () => {
 
   const handleDeleteNotification = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/auth/notifications/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_DEV_URL}/auth/notifications/${id}`, {
         headers: { Authorization: localStorage.getItem("token") },
       });
       setNotifications((prev) => prev.filter((notif) => notif._id !== id)); // Remove from state
@@ -112,7 +112,7 @@ const Profile = () => {
   const handleMarkAsRead = async (id) => {
     try {
       await axios.put(
-        `http://localhost:5000/auth/notifications/${id}`,
+        `${import.meta.env.VITE_DEV_URL}/auth/notifications/${id}`,
         {},
         {
           headers: { Authorization: localStorage.getItem("token") },

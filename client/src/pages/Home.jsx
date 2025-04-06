@@ -7,8 +7,9 @@ const Home = () => {
 
   const getItems = async () => {
     const email = localStorage.getItem("email");
+    // console.log(import.meta.env.VITE_DEV_URL);
     try {
-      const { data } = await axios.post("http://localhost:5000/food", {
+      const { data } = await axios.post(`${import.meta.env.VITE_DEV_URL}/food`, {
         email,
       });
       setItems(data);

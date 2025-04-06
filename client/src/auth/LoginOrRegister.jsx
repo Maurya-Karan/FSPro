@@ -26,7 +26,7 @@ export default function LoginOrRegister() {
   const checkUser = () => {
     if (localStorage.getItem("email")) {
       try {
-        axios.post("http://localhost:5000/auth/jwt",{}, {
+        axios.post(`${import.meta.env.VITE_DEV_URL}/auth/jwt`,{}, {
           withCredentials: true,
         }).then((response) => {
           console.log(response);
@@ -102,8 +102,8 @@ export default function LoginOrRegister() {
 
     try {
       const url = isRegister
-        ? "http://localhost:5000/auth/register"
-        : "http://localhost:5000/auth/login";
+        ? `${import.meta.env.VITE_DEV_URL}/auth/register`
+        : `${import.meta.env.VITE_DEV_URL}/auth/login`;
 
       const response = await axios.post(url, formData, {
         withCredentials: true,

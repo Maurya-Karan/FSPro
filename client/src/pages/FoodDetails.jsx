@@ -13,7 +13,7 @@ const FoodDetails = () => {
     const getItem = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/food/getItem/${id}`
+          `${import.meta.env.VITE_DEV_URL}/food/getItem/${id}`
         );
         setFoodItem(data[0]); // Access first item from the response array
       } catch (err) {
@@ -30,7 +30,7 @@ const FoodDetails = () => {
     if (localStorage.getItem("email") === foodItem.donorMail) {
       return;
     }
-    await axios.post(`http://localhost:5000/food/requestDonation`, {
+    await axios.post(`${import.meta.env.VITE_DEV_URL}/food/requestDonation`, {
       userMail: localStorage.getItem("email"),
       donorMail: foodItem.donorMail,
       foodItemId: foodItem._id,
