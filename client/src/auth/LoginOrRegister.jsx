@@ -26,7 +26,7 @@ export default function LoginOrRegister() {
   const checkUser = () => {
     if (localStorage.getItem("email")) {
       try {
-        axios.post(`${import.meta.env.VITE_DEV_URL}/auth/jwt`,{}, {
+        axios.post(`${import.meta.env.VITE_DEV_URL}/auth/jwt`, {}, {
           withCredentials: true,
         }).then((response) => {
           console.log(response);
@@ -126,7 +126,7 @@ export default function LoginOrRegister() {
 
         showNotification("success", "Login successful! Welcome back.");
         console.log("Before router");
-        navigate("/home");
+        navigate("/");
         console.log("Passed else")
       }
     } catch (error) {

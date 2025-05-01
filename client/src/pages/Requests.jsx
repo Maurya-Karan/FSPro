@@ -6,7 +6,7 @@ const RequestCard = ({ request, onAccept, onReject, status }) => {
   return (
     <div className="bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700 hover:shadow-lg transition-shadow">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-semibold text-white">{request.foodItemId}</h3>
+        <h3 className="text-lg font-semibold text-white">{request.title}</h3>
         <span
           className={`px-2 py-1 text-xs font-medium rounded ${status === "Available"
             ? "bg-teal-500 text-white"
